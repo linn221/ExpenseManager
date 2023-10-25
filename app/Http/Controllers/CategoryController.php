@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -13,6 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $categories = Auth::user()->categories;
+        return view('categories.index', compact('categories'));
         //
     }
 
@@ -21,6 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        return view('categories.create');
         //
     }
 
@@ -29,6 +33,12 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        $category = Category::create([
+            'name' => $request->name,
+            'user_id' => Auth::id()
+        ]);
+
+        return $category;
         //
     }
 
@@ -37,6 +47,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        return $category;
         //
     }
 
@@ -45,6 +56,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        return view('categories.edit', compact('category'));
         //
     }
 
@@ -53,6 +65,8 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
+        $category->update(['name' => $request->name]);
+        return $request;
         //
     }
 
