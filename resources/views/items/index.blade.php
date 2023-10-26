@@ -24,7 +24,7 @@
             </div>
             <div class="w-full mb-8 overflow-hidden border rounded-lg shadow-xs">
                 <div class="w-full overflow-x-auto">
-                    {{-- @include('items.partials.table') --}}
+                    @include('items.partials.table')
                 </div>
             </div>
 

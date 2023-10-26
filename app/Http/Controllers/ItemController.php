@@ -14,7 +14,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return view('items.index');
+        $items = Auth::user()->items()->with('category')->get();
+        return view('items.index', compact('items'));
         //
     }
 
@@ -34,7 +35,7 @@ class ItemController extends Controller
     {
         $request->merge(['user_id' => Auth::id()]);
         $item = Item::create($request->only(['name', 'price', 'category_id', 'user_id']));
-        return $item;
+        return to_route('item.index');
         //
     }
 
@@ -61,7 +62,8 @@ class ItemController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
-        return $request;
+        $item->update($request->only(['name', 'price', 'category_id']));
+        return to_route('item.index');
         //
     }
 
@@ -70,7 +72,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        return $item;
+        $item->delete();
+        return to_route('item.index');
         //
     }
 }
