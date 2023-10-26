@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('/category', CategoryController::class);
     Route::resource('/item', ItemController::class);
     Route::resource('/income', IncomeController::class);
+    Route::resource('/expense', ExpenseController::class);
 });
 
 Route::get('/dashboard', function () {

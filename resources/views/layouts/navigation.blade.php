@@ -22,7 +22,10 @@
                         Items
                     </x-nav-link>
                     <x-nav-link :href="route('income.index')">
-                        Income
+                        Incomes
+                    </x-nav-link>
+                    <x-nav-link :href="route('expense.index')">
+                        Expenses
                     </x-nav-link>
                 </div>
             </div>

@@ -27,6 +27,11 @@ class User extends Authenticatable
         return $this->hasMany(Income::class);
     }
 
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

@@ -33,6 +33,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        // @refactor, something like Auth::user()->category()->create....
         $category = Category::create([
             'name' => $request->name,
             'user_id' => Auth::id()

@@ -25,5 +25,10 @@ class Item extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
+
     use HasFactory, SoftDeletes;
 }
