@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Models\Item;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -13,6 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
+        return view('items.index');
         //
     }
 
@@ -21,6 +23,7 @@ class ItemController extends Controller
      */
     public function create()
     {
+        return view('items.create');
         //
     }
 
@@ -29,6 +32,9 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
+        $request->merge(['user_id' => Auth::id()]);
+        $item = Item::create($request->only(['name', 'price', 'category_id', 'user_id']));
+        return $item;
         //
     }
 
@@ -37,6 +43,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
+        return $item;
         //
     }
 
@@ -45,6 +52,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
+        return view('items.edit', compact('item'));
         //
     }
 
@@ -53,6 +61,7 @@ class ItemController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
+        return $request;
         //
     }
 
@@ -61,6 +70,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
+        return $item;
         //
     }
 }
