@@ -12,14 +12,22 @@
 
     <div class="py-12">
 
-    <div class="p-4 bg-white rounded-lg shadow-xs">
+        <div class="p-4 bg-white rounded-lg shadow-xs">
 
-        <div class="w-full mb-8 overflow-hidden border rounded-lg shadow-xs">
-            <div class="w-full overflow-x-auto">
-                @include('categories.partials.table')
+            <div class=" mb-4">
+            <a href="{{ route('category.create') }}">
+                <x-primary-button>
+                    Create
+                </x-primary-button>
+            </a>
+
             </div>
-        </div>
+            <div class="w-full mb-8 overflow-hidden border rounded-lg shadow-xs">
+                <div class="w-full overflow-x-auto">
+                    @include('categories.partials.table')
+                </div>
+            </div>
 
-    </div>
+        </div>
     </div>
 </x-app-layout>

@@ -38,16 +38,7 @@ class CategoryController extends Controller
             'user_id' => Auth::id()
         ]);
 
-        return $category;
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        return $category;
+        return to_route('category.index');
         //
     }
 
@@ -66,7 +57,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->update(['name' => $request->name]);
-        return $request;
+        return to_route('category.index');
         //
     }
 
@@ -75,6 +66,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $category->delete();
+        return to_route('category.index');
         //
     }
 }
