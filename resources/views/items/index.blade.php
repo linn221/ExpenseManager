@@ -9,10 +9,12 @@
             {{ __('Create') }}
         </a>
     </div> --}}
+    {{-- status --}}
+    <x-session-status :status="session('status')"/>
 
-    <div class="py-12">
+    <div @class(['py-4' => session('status'), 'py-12' => !session('status')])>
 
-        <div class="p-4 bg-white rounded-lg shadow-xs">
+        <div class=" p-4 bg-white rounded-lg shadow-xs">
 
             <div class=" mb-4">
             <a href="{{ route('item.create') }}">

@@ -38,7 +38,8 @@ class CategoryController extends Controller
             'user_id' => Auth::id()
         ]);
 
-        return to_route('category.index');
+        return to_route('category.index')
+            ->with('status', 'category created');
         //
     }
 
@@ -57,7 +58,8 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->update(['name' => $request->name]);
-        return to_route('category.index');
+        return to_route('category.index')
+            ->with('status', 'category updated');
         //
     }
 
@@ -67,7 +69,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return to_route('category.index');
+        return to_route('category.index')
+            ->with('status', 'item deleted');
         //
     }
 }

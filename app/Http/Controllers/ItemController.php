@@ -35,7 +35,8 @@ class ItemController extends Controller
     {
         $request->merge(['user_id' => Auth::id()]);
         $item = Item::create($request->only(['name', 'price', 'category_id', 'user_id']));
-        return to_route('item.index');
+        return to_route('item.index')
+        ->with('status' ,'Item stored');
         //
     }
 
@@ -63,7 +64,8 @@ class ItemController extends Controller
     public function update(UpdateItemRequest $request, Item $item)
     {
         $item->update($request->only(['name', 'price', 'category_id']));
-        return to_route('item.index');
+        return to_route('item.index')
+        ->with('status' ,'Item updated');
         //
     }
 
@@ -73,7 +75,8 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         $item->delete();
-        return to_route('item.index');
+        return to_route('item.index')
+        ->with('status', 'item destroyed');
         //
     }
 }

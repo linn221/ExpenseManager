@@ -10,7 +10,9 @@
         </a>
     </div> --}}
 
-    <div class="py-12">
+    {{-- status --}}
+    <x-session-status :status="session('status')"/>
+    <div @class(['py-4' => session('status'), 'py-12' => !session('status')])>
 
         <div class="p-4 bg-white rounded-lg shadow-xs">
 
