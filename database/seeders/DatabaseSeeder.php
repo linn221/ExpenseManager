@@ -16,11 +16,25 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\User::factory()->create([
+        $test_user = \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
 
+        $anon_user = \App\Models\User::factory()->create([
+            'name' => 'Anonymous User',
+            'email' => 'anon@example.com',
+        ]);
 
+        $categories = ['meal', 'bus', 'drink', 'health'];
+        foreach($categories as $category) {
+            $test_user->categories()->create([
+                'name' => $category
+            ]);
+        }
+
+        $anon_user->categories()->create(
+            ['name' => 'Books']
+        );
     }
 }

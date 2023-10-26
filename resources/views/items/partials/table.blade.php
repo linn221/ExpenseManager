@@ -10,6 +10,12 @@
     </thead>
     <tbody class="bg-white divide-y">
         @forelse($items as $item)
+        {{-- delete form --}}
+            <form action="{{ route('item.destroy', $item) }}" method="post" id="{{ 'delete-' . $item->id }}">
+                @csrf
+                @method('delete')
+            </form>
+
             <tr class="text-gray-700">
                 <td class="px-4 py-3 ">
                     <a href="{{ route('item.show', $item) }}">
@@ -31,13 +37,9 @@
                             Edit
                         </x-secondary-button>
                     </a>
-                    <form action="{{ route('item.destroy', $item) }}" method="post" class="">
-                        @csrf
-                        @method('delete')
-                        <x-danger-button>
-                            Delete
-                        </x-danger-button>
-                    </form>
+                    <x-danger-button :form="'delete-' . $item->id">
+                        Delete
+                    </x-danger-button>
                 </td>
             </tr>
         @empty
