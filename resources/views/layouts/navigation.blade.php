@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('item.index')">
                         Items
                     </x-nav-link>
+                    <x-nav-link :href="route('income.index')">
+                        Income
+                    </x-nav-link>
                 </div>
             </div>
 
