@@ -1,12 +1,13 @@
 #### Functions
-- policies for authorization
-- media upload
++ policies for authorization
 - validation for unique category name on that user
 - seeders
+
+### Alpine.js
+- media upload
 - drop down suggestion item with price, category & option to overwrite the item or create a new one
 
 ### Small features
-- session status after CUD actions
 - cost input interactive to item_id, vice versa
 - informative status message with link to navigate, delete, restore
 ? check the current balance for adding expenses
@@ -15,7 +16,12 @@
 <!-- - expense of a deleted item, Attempt to read property "name" on null -->
 
 ### UI
-- remove ID, replace with name for clickable show link
++ remove ID, replace with name for clickable show link
+- show note in table
++ show count of items under a category, count of expenses under an item
+- order by column, toggle ascending, descending
+- create expense mutliple items
+    new item with price, category
 
 ### Random features
 - status of remaining balance by color
