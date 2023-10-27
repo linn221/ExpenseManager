@@ -1,8 +1,8 @@
 <table class=" w-50">
     <thead>
         <tr class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
-            <th class="px-4 py-3">Id</th>
             <th class="px-4 py-3">Name</th>
+            <th class="px-4 py-3">Items</th>
             <th class="px-4 py-3">Control</th>
         </tr>
     </thead>
@@ -14,10 +14,10 @@
             </form>
             <tr class="text-gray-700">
                 <td class="px-4 py-3 ">
-                    {{ $category->id }}
+                    {{ $category->name }}
                 </td>
                 <td class="px-4 py-3 ">
-                    {{ $category->name }}
+                    {{ $category->items_count }}
                 </td>
                 <td class="px-4 py-3 ">
                     <a href="{{ route('category.edit', $category) }}">

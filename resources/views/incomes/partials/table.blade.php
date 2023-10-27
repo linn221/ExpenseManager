@@ -1,7 +1,6 @@
 <table class=" w-50">
     <thead>
         <tr class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
-            <th class="px-4 py-3">Id</th>
             <th class="px-4 py-3">Amount</th>
             <th class="px-4 py-3">Label</th>
             <th class="px-4 py-3">Date</th>
@@ -19,11 +18,8 @@
             <tr class="text-gray-700">
                 <td class="px-4 py-3 ">
                     <a href="{{ route('income.show', $income) }}">
-                        {{ $income->id }}
+                        {{ $income->amount }}
                     </a>
-                </td>
-                <td class="px-4 py-3 ">
-                    {{ $income->amount }}
                 </td>
                 <td class="px-4 py-3 ">
                     {{ $income->label }}

@@ -1,10 +1,10 @@
 <table class=" w-50">
     <thead>
         <tr class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
-            <th class="px-4 py-3">Id</th>
             <th class="px-4 py-3">Name</th>
             <th class="px-4 py-3">Price</th>
             <th class="px-4 py-3">Category</th>
+            <th class="px-4 py-3">Expenses</th>
             <th class="px-4 py-3">Control</th>
         </tr>
     </thead>
@@ -19,17 +19,17 @@
             <tr class="text-gray-700">
                 <td class="px-4 py-3 ">
                     <a href="{{ route('item.show', $item) }}">
-                        {{ $item->id }}
+                        {{ $item->name }}
                     </a>
-                </td>
-                <td class="px-4 py-3 ">
-                    {{ $item->name }}
                 </td>
                 <td class="px-4 py-3 ">
                     {{ $item->price }}
                 </td>
                 <td class="px-4 py-3 ">
                     {{ $item->category->name }}
+                </td>
+                <td class="px-4 py-3 ">
+                    {{ $item->expenses_count }}
                 </td>
                 <td class="px-4 py-3 ">
                     <a href="{{ route('item.edit', $item) }}">

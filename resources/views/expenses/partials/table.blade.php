@@ -1,11 +1,11 @@
-<table class=" w-50">
+<table class=" w-full">
     <thead>
         <tr class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
-            <th class="px-4 py-3">Id</th>
             <th class="px-4 py-3">Item</th>
             <th class="px-4 py-3">Qty</th>
             <th class="px-4 py-3">Cost</th>
             <th class="px-4 py-3">Date</th>
+            <th class="px-4 py-3">Note</th>
 
             <th class="px-4 py-3">Control</th>
         </tr>
@@ -21,11 +21,8 @@
             <tr class="text-gray-700">
                 <td class="px-4 py-3 ">
                     <a href="{{ route('expense.show', $expense) }}">
-                        {{ $expense->id }}
+                        {{ $expense->item->name }}
                     </a>
-                </td>
-                <td class="px-4 py-3 ">
-                    {{ $expense->item->name }}
                 </td>
                 <td class="px-4 py-3 ">
                     {{ $expense->quantity }}
@@ -35,6 +32,10 @@
                 </td>
                 <td class="px-4 py-3 ">
                     {{ $expense->date }}
+                </td>
+                <td class="px-4 py-3 ">
+                    {{ Illuminate\Support\Str::limit($expense->note, 20) }}
+                    {{-- {{ str_limit($expense->note) }} --}}
                 </td>
                 <td class="px-4 py-3 ">
                     <a href="{{ route('expense.edit', $expense) }}">

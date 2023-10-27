@@ -16,7 +16,6 @@
 <!-- - expense of a deleted item, Attempt to read property "name" on null -->
 
 ### UI
-+ remove ID, replace with name for clickable show link
 - show note in table
 + show count of items under a category, count of expenses under an item
 - order by column, toggle ascending, descending

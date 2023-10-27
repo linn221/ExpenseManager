@@ -14,7 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Auth::user()->items()->with('category')->get();
+        $items = Auth::user()->items()->with('category')->withCount('expenses')->get();
         return view('items.index', compact('items'));
         //
     }

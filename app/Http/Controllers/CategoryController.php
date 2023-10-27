@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Auth::user()->categories;
+        $categories = Auth::user()->categories()->withCount('items')->get();
         return view('categories.index', compact('categories'));
         //
     }
