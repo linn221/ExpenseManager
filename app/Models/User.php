@@ -43,6 +43,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $attributes = [
+        'balance' => 0
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *

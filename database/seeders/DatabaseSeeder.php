@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'anon@example.com',
         ]);
 
-        $categories = ['meal', 'bus', 'drink', 'health'];
+        $categories = ['meal', 'bus', 'drink', 'health', 'raw food', 'phone bill'];
         foreach($categories as $category) {
             $test_user->categories()->create([
                 'name' => $category

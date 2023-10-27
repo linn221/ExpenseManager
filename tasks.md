@@ -1,6 +1,22 @@
+#### Functions
 - policies for authorization
+- media upload
 - validation for unique category name on that user
-- session status after CUD actions
 - seeders
+- drop down suggestion item with price, category & option to overwrite the item or create a new one
 
+### Small features
+- session status after CUD actions
+- cost input interactive to item_id, vice versa
+- informative status message with link to navigate, delete, restore
+
+### Random features
+- status of remaining balance by color
+
+### Large features
+- create a bank account and link expense, income to it, instead of user_id
+    (planning to have multiple users belong to one account, syncing data)
+
+### Refactor
 - remove show method for category controller
+- helper file for printing money
