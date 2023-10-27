@@ -17,7 +17,7 @@
             <x-text-input id="amount" name="amount" type="number" step="50" class="mt-1 block w-full"
                 :value="old('amount', 50)"
                 required autofocus />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-error class="mt-2" :messages="$errors->get('amount')" />
         </div>
 
         <div>
@@ -39,6 +39,7 @@
         <div>
             <x-input-label for="note" value="Note" />
             <textarea name="note" id="note" class=" mt-1 block w-full">{{ old('note') }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('note')" />
         </div>
 
         <x-primary-button>

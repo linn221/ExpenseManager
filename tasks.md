@@ -9,6 +9,13 @@
 - session status after CUD actions
 - cost input interactive to item_id, vice versa
 - informative status message with link to navigate, delete, restore
+? check the current balance for adding expenses
+
+### fix
+<!-- - expense of a deleted item, Attempt to read property "name" on null -->
+
+### UI
+- remove ID, replace with name for clickable show link
 
 ### Random features
 - status of remaining balance by color

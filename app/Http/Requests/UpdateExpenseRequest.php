@@ -22,6 +22,10 @@ class UpdateExpenseRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'item_id' => 'required|exists:items,id',
+            'quantity' => 'required|numeric|min:1',
+            'date' => 'required|date',
+            'note' => 'nullable'
             //
         ];
     }
