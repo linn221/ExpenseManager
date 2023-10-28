@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreIncomeRequest;
 use App\Http\Requests\UpdateIncomeRequest;
 use App\Models\Income;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class IncomeController extends Controller
@@ -16,9 +17,15 @@ class IncomeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $incomes = Auth::user()->incomes;
+        $query = Auth::user()->incomes()
+            // @later, date should be casted
+            // sorting
+            ->when($request->has('order') && in_array($request->order, ['id', 'label', 'amount']),
+                fn ($query) => $query->orderBy($request->order, $request->has('desc') ? 'desc' : 'asc')
+            );
+        $incomes = $query->get();
         return view('incomes.index', compact('incomes'));
         //
     }
@@ -41,7 +48,7 @@ class IncomeController extends Controller
         $income = Income::create($request->only(['user_id', 'amount', 'label', 'date', 'note']));
 
         return to_route('income.index')
-        ->with('status', 'income stored');
+            ->with('status', 'income stored');
         //
     }
 
@@ -70,7 +77,7 @@ class IncomeController extends Controller
     {
         $income->update($request->only(['amount', 'label', 'note', 'date']));
         return to_route('income.index')
-        ->with('status', 'income updated');
+            ->with('status', 'income updated');
         //
     }
 
@@ -81,7 +88,7 @@ class IncomeController extends Controller
     {
         $income->delete();
         return to_route('income.index')
-        ->with('status', 'income destroyed');
+            ->with('status', 'income destroyed');
         //
     }
 }

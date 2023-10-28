@@ -1,15 +1,15 @@
 #### Functions
-+ policies for authorization
-- validation for unique category name on that user
 - seeders
++ soft deleting
+- sorting categories, items by count of items, expenses, respectively
 
 ### Alpine.js
 - media upload
-- drop down suggestion item with price, category & option to overwrite the item or create a new one
++ drop down suggestion item with price, category & option to overwrite the item or create a new one
+
 
 ### Small features
-- cost input interactive to item_id, vice versa
-- informative status message with link to navigate, delete, restore
++ informative status message with link to navigate, delete, restore
 ? check the current balance for adding expenses
 
 ### fix
@@ -18,7 +18,7 @@
 
 ### UI
 - show note in table
-- order by column, toggle ascending, descending
++ order by column, toggle ascending, descending
 - create expense mutliple items
     new item with price, category
 
@@ -30,5 +30,4 @@
     (planning to have multiple users belong to one account, syncing data)
 
 ### Refactor
-- remove show method for category controller
 - helper file for printing money

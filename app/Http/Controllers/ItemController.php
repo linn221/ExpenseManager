@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 use App\Models\Item;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
@@ -18,9 +19,17 @@ class ItemController extends Controller
         $this->authorizeResource(Item::class, 'item');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $items = Auth::user()->items()->with('category')->withCount('expenses')->get();
+        $query = Auth::user()->items()
+            // eager loading category and expenses count
+            ->with('category')->withCount('expenses')
+            // sorting
+            ->when($request->has('order') && in_array($request->order, ['id', 'name', 'price']),
+                fn ($query) => $query->orderBy($request->order, $request->has('desc') ? 'desc' : 'asc')
+            );
+
+        $items = $query->get();
         return view('items.index', compact('items'));
         //
     }
@@ -42,7 +51,7 @@ class ItemController extends Controller
         $request->merge(['user_id' => Auth::id()]);
         $item = Item::create($request->only(['name', 'price', 'category_id', 'user_id']));
         return to_route('item.index')
-        ->with('status' ,'Item stored');
+            ->with('status', 'Item stored');
         //
     }
 
@@ -71,7 +80,7 @@ class ItemController extends Controller
     {
         $item->update($request->only(['name', 'price', 'category_id']));
         return to_route('item.index')
-        ->with('status' ,'Item updated');
+            ->with('status', 'Item updated');
         //
     }
 
@@ -82,7 +91,7 @@ class ItemController extends Controller
     {
         $item->delete();
         return to_route('item.index')
-        ->with('status', 'item destroyed');
+            ->with('status', 'item destroyed');
         //
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
@@ -17,9 +18,15 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Auth::user()->categories()->withCount('items')->get();
+        $query = Auth::user()->categories()
+        // eager loading count
+        ->withCount('items')
+        // sorting
+        ->when($request->has('order') && in_array($request->order, ['name', 'id']),
+            fn($query) => $query->orderBy($request->order, $request->has('desc') ? 'desc' : 'asc'));
+        $categories = $query->get();
         return view('categories.index', compact('categories'));
         //
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreExpenseRequest;
 use App\Http\Requests\UpdateExpenseRequest;
 use App\Models\Expense;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ExpenseController extends Controller
@@ -16,9 +17,14 @@ class ExpenseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $expenses = Auth::user()->expenses;
+        $query = Auth::user()->expenses()
+            // sorting
+            ->when($request->has('order') && in_array($request->order, ['id', 'item_id', 'cost', 'quantity', 'note']),
+            fn($query) => $query->orderBy($request->order, $request->has('desc') ? 'desc' : 'asc'))
+        ;
+        $expenses = $query->get();
         return view('expenses.index', compact('expenses'));
         //
     }
