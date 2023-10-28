@@ -17,7 +17,6 @@
 
 ### UI
 - show note in table
-+ show count of items under a category, count of expenses under an item
 - order by column, toggle ascending, descending
 - create expense mutliple items
     new item with price, category

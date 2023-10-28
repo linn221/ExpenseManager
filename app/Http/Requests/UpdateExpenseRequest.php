@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateExpenseRequest extends FormRequest
 {
@@ -22,7 +23,9 @@ class UpdateExpenseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'item_id' => 'required|exists:items,id',
+            'item_id' => 'required|numeric|min:1',
+            // exists and belong to the current user
+            'item_id' => Rule::exists('items', 'id')->where('user_id', $this->user()->id),
             'quantity' => 'required|numeric|min:1',
             'date' => 'required|date',
             'note' => 'nullable'
