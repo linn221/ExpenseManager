@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class IncomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Income::class, 'income');
+    }
     /**
      * Display a listing of the resource.
      */

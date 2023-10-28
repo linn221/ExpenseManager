@@ -43,9 +43,9 @@
 
         <div>
             <x-input-label for="cost" value="Cost" />
-            <x-text-input id="cost" name="cost" type="number" class="mt-1 block w-full"
+            <x-text-input id="cost" name="cost"
             x-model="cost"
-            {{-- x-effect="quantity = Math.trunc(cost / prices[item_id])" --}}
+            x-effect="quantity = Math.trunc(cost / prices[item_id])"
             required/>
             <x-input-error class="mt-2" :messages="$errors->get('cost')" />
         </div>

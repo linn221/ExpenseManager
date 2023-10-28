@@ -12,6 +12,12 @@ class ItemController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        // make sure a user cannot access items that does not belong to him
+        $this->authorizeResource(Item::class, 'item');
+    }
+
     public function index()
     {
         $items = Auth::user()->items()->with('category')->withCount('expenses')->get();

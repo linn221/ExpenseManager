@@ -14,6 +14,7 @@
 
 ### fix
 <!-- - expense of a deleted item, Attempt to read property "name" on null -->
+- create form's interactivity not working with second user
 
 ### UI
 - show note in table

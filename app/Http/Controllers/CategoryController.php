@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        // make sure a user cannot access categorys that does not belong to him
+        $this->authorizeResource(Category::class, 'category');
+    }
     /**
      * Display a listing of the resource.
      */

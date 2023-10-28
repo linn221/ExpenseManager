@@ -23,7 +23,8 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function() {
-    Route::resource('/category', CategoryController::class);
+    Route::resource('/category', CategoryController::class)
+        ->except('show');
     Route::resource('/item', ItemController::class);
     Route::resource('/income', IncomeController::class);
     Route::resource('/expense', ExpenseController::class);
