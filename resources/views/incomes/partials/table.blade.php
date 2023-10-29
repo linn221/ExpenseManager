@@ -1,15 +1,24 @@
 <table class=" w-50">
     <thead>
         <tr class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
-            <th class="px-4 py-3">Amount</th>
-            <th class="px-4 py-3">Label</th>
+            <th class="px-4 py-3">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'amount']) }}">
+                    Amount
+                </a>
+            </th>
+            <th class="px-4 py-3">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'label']) }}">
+                    Label
+                </a>
+            </th>
+            {{-- @update order by date feature --}}
             <th class="px-4 py-3">Date</th>
             <th class="px-4 py-3">Control</th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y">
         @forelse($incomes as $income)
-        {{-- delete form --}}
+            {{-- delete form --}}
             <form action="{{ route('income.destroy', $income) }}" method="post" id="{{ 'delete-' . $income->id }}">
                 @csrf
                 @method('delete')

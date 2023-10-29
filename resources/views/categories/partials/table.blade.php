@@ -1,7 +1,11 @@
 <table class=" w-50">
     <thead>
         <tr class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
-            <th class="px-4 py-3">Name</th>
+            <th class="px-4 py-3">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'name']) }}">
+                    Name
+                </a>
+            </th>
             <th class="px-4 py-3">Items</th>
             <th class="px-4 py-3">Control</th>
         </tr>
@@ -25,9 +29,9 @@
                             Edit
                         </x-secondary-button>
                     </a>
-                        <x-danger-button :form="'delete-'.$category->id">
-                            Delete
-                        </x-danger-button>
+                    <x-danger-button :form="'delete-' . $category->id">
+                        Delete
+                    </x-danger-button>
                 </td>
             </tr>
         @empty

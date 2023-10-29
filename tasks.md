@@ -2,6 +2,7 @@
 - seeders
 + soft deleting
 - sorting categories, items by count of items, expenses, respectively
+- filter by price greater or less than, etc
 
 ### Alpine.js
 - media upload
@@ -24,6 +25,7 @@
 
 ### Random features
 - status of remaining balance by color
+- validate y
 
 ### Large features
 - create a bank account and link expense, income to it, instead of user_id

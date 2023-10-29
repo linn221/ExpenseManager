@@ -1,9 +1,21 @@
 <table class=" w-50">
     <thead>
         <tr class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
-            <th class="px-4 py-3">Name</th>
-            <th class="px-4 py-3">Price</th>
-            <th class="px-4 py-3">Category</th>
+            <th class="px-4 py-3">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'name']) }}">
+                    Name
+                </a>
+            </th>
+            <th class="px-4 py-3">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'price']) }}">
+                    Price
+                </a>
+            </th>
+            <th class="px-4 py-3">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'category_id']) }}">
+                    Category
+                </a>
+            </th>
             <th class="px-4 py-3">Expenses</th>
             <th class="px-4 py-3">Control</th>
         </tr>

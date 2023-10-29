@@ -1,18 +1,35 @@
 <table class=" w-full">
     <thead>
         <tr class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
-            <th class="px-4 py-3">Item</th>
-            <th class="px-4 py-3">Qty</th>
-            <th class="px-4 py-3">Cost</th>
+
+            <th class="px-4 py-3">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'item_id']) }}">
+                    Item
+                </a>
+            </th>
+            <th class="px-4 py-3">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'quantity']) }}">
+                    Qty
+                </a>
+            </th>
+            <th class="px-4 py-3">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'cost']) }}">
+                    Cost
+                </a>
+            </th>
             <th class="px-4 py-3">Date</th>
-            <th class="px-4 py-3">Note</th>
+            <th class="px-4 py-3">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'note']) }}">
+                    Note
+                </a>
+            </th>
 
             <th class="px-4 py-3">Control</th>
         </tr>
     </thead>
     <tbody class="bg-white divide-y">
         @forelse($expenses as $expense)
-        {{-- delete form --}}
+            {{-- delete form --}}
             <form action="{{ route('expense.destroy', $expense) }}" method="post" id="{{ 'delete-' . $expense->id }}">
                 @csrf
                 @method('delete')
