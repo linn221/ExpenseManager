@@ -3,6 +3,7 @@
 + soft deleting
 - sorting categories, items by count of items, expenses, respectively
 - filter by price greater or less than, etc
++ show form if the item is new, create new route that store the item and flush the item_id to session, and redirect to create expense form
 
 ### Alpine.js
 - media upload
@@ -20,6 +21,8 @@
 ### UI
 - show note in table
 + order by column, toggle ascending, descending
++ show warrning for expense that will zero or negative the remainig balance
+    using x-show attribute
 - create expense mutliple items
     new item with price, category
 
