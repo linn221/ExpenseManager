@@ -3,23 +3,23 @@
         <tr class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
 
             <th class="px-4 py-3">
-                <a href="{{ request()->fullUrlWithQuery(['order' => 'item_id']) }}">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'item_id'])}}{{ !request()->has('desc') ? '&desc' : '' }}">
                     Item
                 </a>
             </th>
             <th class="px-4 py-3">
-                <a href="{{ request()->fullUrlWithQuery(['order' => 'quantity']) }}">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'quantity']) }}{{ !request()->has('desc') ? '&desc' : '' }}">
                     Qty
                 </a>
             </th>
             <th class="px-4 py-3">
-                <a href="{{ request()->fullUrlWithQuery(['order' => 'cost']) }}">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'cost']) }}{{ !request()->has('desc') ? '&desc' : '' }}">
                     Cost
                 </a>
             </th>
             <th class="px-4 py-3">Date</th>
             <th class="px-4 py-3">
-                <a href="{{ request()->fullUrlWithQuery(['order' => 'note']) }}">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'note']) }}{{ !request()->has('desc') ? '&desc' : '' }}">
                     Note
                 </a>
             </th>

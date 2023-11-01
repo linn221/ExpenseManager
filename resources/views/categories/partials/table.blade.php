@@ -2,7 +2,7 @@
     <thead>
         <tr class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
             <th class="px-4 py-3">
-                <a href="{{ request()->fullUrlWithQuery(['order' => 'name']) }}">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'name']) }}{{ !request()->has('desc') ? '&desc' : '' }}">
                     Name
                 </a>
             </th>

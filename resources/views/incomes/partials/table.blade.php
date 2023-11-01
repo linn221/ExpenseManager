@@ -2,12 +2,12 @@
     <thead>
         <tr class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
             <th class="px-4 py-3">
-                <a href="{{ request()->fullUrlWithQuery(['order' => 'amount']) }}">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'amount']) }}{{ !request()->has('desc') ? '&desc' : '' }}">
                     Amount
                 </a>
             </th>
             <th class="px-4 py-3">
-                <a href="{{ request()->fullUrlWithQuery(['order' => 'label']) }}">
+                <a href="{{ request()->fullUrlWithQuery(['order' => 'label']) }}{{ !request()->has('desc') ? '&desc' : '' }}">
                     Label
                 </a>
             </th>
