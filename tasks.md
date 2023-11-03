@@ -12,11 +12,13 @@
 
 ### Small features
 + informative status message with link to navigate, delete, restore
++ show items select box by most recorded
 ? check the current balance for adding expenses
 
 ### fix
 <!-- - expense of a deleted item, Attempt to read property "name" on null -->
 - create form's interactivity not working with second user
+
 
 ### UI
 - show note in table
@@ -36,3 +38,4 @@
 
 ### Refactor
 - helper file for printing money
+- helper function to differentiate item name

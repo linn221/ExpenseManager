@@ -23,7 +23,7 @@ class Expense extends Model
     {
         return $this->belongsTo(Item::class)
         ->withDefault([
-            'name' => 'deleted'
+            'name' => 'deleted',
         ]);
     }
 

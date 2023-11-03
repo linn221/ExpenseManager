@@ -8,7 +8,7 @@
                     header='New Expense'
                     description='Record expenses with items & quantity'
                     :action="route('expense.store')"
-                    :item_id="old('item_id', 1)"
+                    :item_id="old('item_id', 0)"
                     :quantity="old('quantity', 1)"
                     :date="old('date', date('Y-m-d'))"
                     :note="old('note', '')"
