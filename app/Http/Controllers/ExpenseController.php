@@ -43,6 +43,7 @@ class ExpenseController extends Controller
      */
     public function store(StoreExpenseRequest $request)
     {
+        return $request;
         $request->merge(['user_id' => Auth::id()]);
         $expense = Expense::create($request->only(['user_id', 'item_id', 'quantity', 'date', 'note']));
         // @refactor
