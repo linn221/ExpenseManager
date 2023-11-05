@@ -52,7 +52,7 @@ class ExpenseController extends Controller
                 'price' => $request->item_price,
                 'category_id' => $request->category_id
             ]);
-            $request->merge(['item_id', $item->id]);
+            $request->merge(['item_id' => $item->id]);
         } else {
             $item = Item::findOrFail($request->item_id);
             if ($request->boolean('overwrite')) {
