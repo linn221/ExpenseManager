@@ -9,10 +9,6 @@
                         {{ $expense->item->name }}
                     </strong>
                     <br>
-                    <strong>
-                        {{ $expense->item_id }}
-                    </strong>
-                    <br>
                     Quantity:
                     <strong>
                         {{ $expense->quantity }}

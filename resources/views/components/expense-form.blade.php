@@ -13,16 +13,18 @@
     <form method="post" action="{{ $action }}" class="mt-6 space-y-6"
         x-data='{
         item_id: {{ $item_id }},
+        quantity: {{ $quantity }},
         item_name: "",
         item_price: 50,
         category_id: 1,
+        cost: 0,
+        show_checkbox: false,
+        overwrite: false,
         item_prices: @json(auth()->user()->items->pluck('price', 'id')),
         item_names: @json(auth()->user()->items->pluck('name', 'id')),
         item_categories: @json(auth()->user()->items->pluck('category_id', 'id')),
-        cost: 0,
-        quantity: {{ $quantity }},
-        show_checkbox: false,
     }'>
+
         @csrf
         @if ($edit)
             @method('put')
@@ -32,22 +34,19 @@
             <x-input-label for="item" value="Item" />
             {{-- using select for now, supposed to be a drop down suggestion --}}
             <select name="item_id" id="item" class=" mt-1 block w-full" x-model="item_id"
-                x-effect="
-                cost = item_prices[item_id] * quantity;
-                item_name = item_names[item_id];
-                item_price = item_prices[item_id];
-                category_id = item_categories[item_id];
-                if (item_id == 0) {
-                    show_checkbox = false;
-                } else {
-                    show_checkbox = true;
-                }
-                ">
+                x-on:click="
+                    item_name = item_names[item_id];
+                    item_price = item_prices[item_id];
+                    category_id = item_categories[item_id];
+                    overwrite = false;
+                    {{-- don't show overwrite checkbox for new item --}}
+                    show_checkbox = item_id != 0;
+            ">
                 <option value="0">
                     New Item
                 </option>
                 @foreach (auth()->user()->items as $item)
-                    <option value="{{ $item->id }}" @selected($item->id == old('item_id'))>
+                    <option value="{{ $item->id }}")>
                         {{ $item->name . ':' . $item->price }}
                     </option>
                 @endforeach
@@ -62,7 +61,7 @@
         <div class="">
             <x-input-label for="quantity" value="Quantity" />
             <x-text-input id="quantity" name="quantity" type="number" class="mt-1 block w-full" x-model="quantity"
-                x-effect="cost = item_prices[item_id] * quantity" required />
+                required />
             <x-input-error class="mt-2" :messages="$errors->get('quantity')" />
         </div>
 
@@ -74,7 +73,7 @@
         </div>
 
         <div class=" text-lg font-weight-bold">
-            Cost: <span class=" text-green-600" x-text="cost"></span>
+            Cost: <span class=" text-green-600" x-text=" quantity * item_price"></span>
         </div>
         {{-- 
         <div>

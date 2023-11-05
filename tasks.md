@@ -18,6 +18,7 @@
 ### fix
 <!-- - expense of a deleted item, Attempt to read property "name" on null -->
 - create form's interactivity not working with second user
+- soft deleted items interrupting with new item
 
 
 ### UI
@@ -39,3 +40,4 @@
 ### Refactor
 - helper file for printing money
 - helper function to differentiate item name
+- move if statement inside form template into slots
