@@ -2,7 +2,7 @@
     <div>
         <x-input-label for="item_name" value="name" />
         <x-text-input id="item_name" name="item_name" type="text" class="mt-1 block w-full" x-model="item_name"
-            required autofocus />
+            required/>
         <x-input-error class="mt-2" :messages="$errors->get('item_name')" />
     </div>
 
@@ -25,7 +25,7 @@
     </div>
     <div class=" mt-2" x-show="show_checkbox">
         <label for="overwrite-checkbox" class="mr-2 font-medium text-gray-700">
-            <input id="overwrite-checkbox" type="checkbox" name="overwrite">
+            <input id="overwrite-checkbox" type="checkbox" name="overwrite" checked/>
             Overwrite/update
         </label>
     </div>

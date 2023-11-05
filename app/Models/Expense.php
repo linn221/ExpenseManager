@@ -13,7 +13,8 @@ class Expense extends Model
         'quantity',
         'date',
         'note',
-        'user_id'
+        'user_id',
+        'cost'
     ];
     protected $attributes = [
         'cost' => 0

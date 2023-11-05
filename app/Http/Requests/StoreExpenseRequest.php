@@ -29,9 +29,14 @@ class StoreExpenseRequest extends FormRequest
                 'numeric',
                 'min:0',
                 function (string $attribute, mixed $value, Closure $fail) {
-                    if ($value != 0 && !auth()->user()->items()->where('id', $value)->first()) {
-                        return $fail("The $attribute must be either zero or a valid item id");
-                    }
+                    if ($value == 0)
+                    // if the item is newly inserted
+                        return;
+
+                    // if the item_name already exists on another record for that user
+                    if (Rule::unique('items', 'name')->where('user_id', $this->user()->id)->ignore($this->item_id))
+                        return;
+                    return $fail();
                 }
             ],
             'item_name' => [
@@ -54,6 +59,7 @@ class StoreExpenseRequest extends FormRequest
             // 'item_id' => 'required|numeric|exists:items,id,',
             // exists and belong to the current user
             // 'item_id' => Rule::exists('items', 'id')->where('user_id', $this->user()->id),
+
             'quantity' => 'required|numeric|min:1',
             'date' => 'required|date',
             'note' => 'nullable',
