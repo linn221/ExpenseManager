@@ -26,19 +26,19 @@
 
         <div>
             <x-input-label for="name" value="Name" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
-                :value="old('name', $name)"
+            <x-text-input id="name" name="item_name" type="text" class="mt-1 block w-full"
+                :value="old('item_name', $name)"
                 required autofocus />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-error class="mt-2" :messages="$errors->get('item_name')" />
         </div>
 
         <div>
-            <x-input-label for="price" value="Price" />
-            <x-text-input id="price" name="price" type="number" class="mt-1 block w-full"
-                :value="old('price', $price)"
+            <x-input-label for="item_price" value="Price" />
+            <x-text-input id="item_price" name="item_price" type="number" class="mt-1 block w-full"
+                :value="old('item_price', $price)"
                 step="50"
                 required/>
-            <x-input-error class="mt-2" :messages="$errors->get('price')" />
+            <x-input-error class="mt-2" :messages="$errors->get('item_price')" />
         </div>
 
         <div>

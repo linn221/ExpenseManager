@@ -53,8 +53,14 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
-        $request->merge(['user_id' => Auth::id()]);
-        $item = Item::create($request->only(['name', 'price', 'category_id', 'user_id']));
+        // $request->merge(['user_id' => Auth::id()]);
+        // $item = Item::create($request->only(['name', 'price', 'category_id', 'user_id']));
+        $item = Item::create([
+            'name' => $request->item_name,
+            'price' => $request->item_price,
+            'category_id' => $request->category_id,
+            'user_id' => $request->user()->id
+        ]);
         return to_route('item.index')
             ->with('status', 'Item stored');
         //
@@ -83,7 +89,13 @@ class ItemController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
-        $item->update($request->only(['name', 'price', 'category_id']));
+        $item->update([
+            'name' => $request->item_name,
+            'price' => $request->item_price,
+            'category_id' => $request->category_id,
+        ]);
+
+        // $item->update($request->only(['name', 'price', 'category_id']));
         return to_route('item.index')
             ->with('status', 'Item updated');
         //
