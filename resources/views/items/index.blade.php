@@ -10,19 +10,24 @@
         </a>
     </div> --}}
     {{-- status --}}
-    <x-session-status :status="session('status')"/>
+    <x-session-status :status="session('status')" />
 
     <div @class(['py-4' => session('status'), 'py-12' => !session('status')])>
 
         <div class=" p-4 bg-white rounded-lg shadow-xs">
 
             <div class=" mb-4">
-            <a href="{{ route('item.create') }}">
-                <x-primary-button>
-                    Create
-                </x-primary-button>
-            </a>
+                <div>
+                    <a href="{{ route('item.create') }}">
+                        <x-primary-button>
+                            Create
+                        </x-primary-button>
+                    </a>
+                </div>
 
+                <div class=" mx-auto">
+                    @include('items.partials.soft-delete-buttons')
+                </div>
             </div>
             <div class="w-full mb-8 overflow-hidden border rounded-lg shadow-xs">
                 <div class="w-full overflow-x-auto">

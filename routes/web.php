@@ -19,13 +19,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
 
 Route::middleware('auth')->group(function() {
     Route::resource('/category', CategoryController::class)
         ->except('show');
     Route::resource('/item', ItemController::class);
+    // soft delete related routes
+    Route::controller(ItemController::class)->group(function() {
+        Route::post('/item/restore/{id}', 'restore')->name('item.restore');
+        Route::post('/item/forceDelete/{id}', 'forceDelete')->name('item.forceDelete');
+        Route::post('/item/emptyBin', 'emptyBin')->name('item.emptyBin');
+        Route::post('/item/recycleBin', 'recycleBin')->name('item.recycleBin');
+    });
     Route::resource('/income', IncomeController::class);
     Route::resource('/expense', ExpenseController::class);
 });

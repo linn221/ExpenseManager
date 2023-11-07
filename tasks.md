@@ -14,6 +14,9 @@
 + informative status message with link to navigate, delete, restore
 + show items select box by most recorded
 ? check the current balance for adding expenses
+- remeber date inserted expense form
+- allow zero cost expense
+- unknown category
 
 ### fix
 <!-- - expense of a deleted item, Attempt to read property "name" on null -->
@@ -24,6 +27,7 @@
 ### UI
 - show note in table
 + order by column, toggle ascending, descending
+- show cost with number_format
 + show warrning for expense that will zero or negative the remainig balance
     using x-show attribute
 - create expense mutliple items

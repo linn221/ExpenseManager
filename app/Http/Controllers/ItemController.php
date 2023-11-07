@@ -24,6 +24,11 @@ class ItemController extends Controller
         $query = Auth::user()->items()
             // eager loading category and expenses count
             ->with('category')->withCount('expenses')
+            // soft deleted ones
+            ->when($request->has('trashed'),
+                fn($query) => $query->withTrashed())
+            ->when($request->has('only-trashed'),
+                fn($query) => $query->onlyTrashed())
             // sorting
             ->when($request->has('order') && in_array($request->order, ['id', 'name', 'price']),
                 fn ($query) => $query->orderBy($request->order, $request->has('desc') ? 'desc' : 'asc')
@@ -93,5 +98,55 @@ class ItemController extends Controller
         return to_route('item.index')
             ->with('status', 'item destroyed');
         //
+    }
+
+    public function restore(string $id)
+    {
+        $item = Item::onlyTrashed()->where('id', $id)->first();
+        if (is_null($item)) {
+            return back(404)
+            ->with('status', 'item does not exist in trash');
+        }
+
+        $this->authorize('softDelete', $item);
+        $item->restore();
+
+        return back()
+        ->with('status', 'item restored successfully');
+    }
+
+    public function forceDelete(string $id)
+    {
+        $item = Item::onlyTrashed()->where('id', $id)->first();
+        if (is_null($item)) {
+            return back(404)
+            ->with('status', 'item does not exist in trash');
+        }
+
+        $this->authorize('softDelete', $item);
+        $item->forceDelete();
+
+        return back()
+        ->with('status', 'item force deleted successfully');
+    }
+
+    public function emptyBin(Request $request)
+    {
+        // $this->authorize('softDelete', Item::class);
+
+        $request->user()->items()->onlyTrashed()->forceDelete();
+
+        return back()
+        ->with('status', 'trashed items cleared successfully');
+    }
+
+    public function recycleBin(Request $request)
+    {
+        // $this->authorize('softDelete', Item::class);
+
+        $request->user()->items()->onlyTrashed()->restore();
+
+        return back()
+        ->with('status', 'trashed items restored successfully');
     }
 }

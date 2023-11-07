@@ -53,6 +53,10 @@ class ItemPolicy
         //
     }
 
+    public function softDelete(User $user, Item $item) : bool
+    {
+        return $item->user_id == $user->id;
+    }
     // /**
     //  * Determine whether the user can restore the model.
     //  */
